@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TekCoat Construct — Cotización en Línea</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <span class="logo-text">TekCoat<span>Construct</span></span>
+        <span class="logo-sub">Construcción &amp; Acabados</span>
+      </div>
+      <nav class="header-nav">
+        <a href="#formulario">Solicitar Cotización</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Obtén tu cotización<br/><span>en minutos</span></h1>
+      <p>Sin llamadas, sin esperas. Completa el formulario y recibe una estimación preliminar al instante.</p>
+      <a href="#formulario" class="btn-primary">Solicitar ahora</a>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="container">
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <div class="servicios-grid">
+        <div class="servicio-card">
+          <div class="servicio-icon">🎨</div>
+          <h3>Pintura Interior</h3>
+          <p>Transformamos los espacios internos de tu hogar o negocio con acabados de alta calidad.</p>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">🏠</div>
+          <h3>Pintura Exterior</h3>
+          <p>Protección y estética para las fachadas de tu propiedad con pinturas resistentes a la intemperie.</p>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">💧</div>
+          <h3>Impermeabilización</h3>
+          <p>Soluciones efectivas para techos, paredes y áreas húmedas que evitan filtraciones y humedad.</p>
+        </div>
+        <div class="servicio-card">
+          <div class="servicio-icon">🔨</div>
+          <h3>Remodelación</h3>
+          <p>Renovamos y mejoramos espacios adaptándonos a tu visión y presupuesto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section class="formulario-section" id="formulario">
+    <div class="container">
+      <h2 class="section-title">Solicitar Cotización</h2>
+      <p class="section-sub">Completa los datos y recibe una estimación preliminar de inmediato.</p>
+
+      <div class="form-wrapper">
+        <div id="form-container">
+          <div class="form-grid">
+
+            <!-- Datos del cliente -->
+            <div class="form-group full">
+              <h3 class="form-section-label">📋 Tus datos de contacto</h3>
+            </div>
+            <div class="form-group">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" placeholder="Ej. María González" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono / WhatsApp *</label>
+              <input type="tel" id="telefono" placeholder="Ej. 809-555-0000" required />
+            </div>
+            <div class="form-group full">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" placeholder="Ej. maria@email.com" />
+            </div>
+            <div class="form-group full">
+              <label for="direccion">Dirección / Sector del proyecto *</label>
+              <input type="text" id="direccion" placeholder="Ej. Los Prados, Santo Domingo" required />
+            </div>
+
+            <!-- Detalles del trabajo -->
+            <div class="form-group full">
+              <h3 class="form-section-label">🔧 Detalles del trabajo</h3>
+            </div>
+            <div class="form-group full">
+              <label for="servicio">Tipo de servicio *</label>
+              <select id="servicio" required onchange="actualizarFormulario()">
+                <option value="">-- Selecciona un servicio --</option>
+                <option value="pintura_interior">Pintura Interior</option>
+                <option value="pintura_exterior">Pintura Exterior</option>
+                <option value="impermeabilizacion">Impermeabilización</option>
+                <option value="remodelacion">Remodelación</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="grupo-metros">
+              <label for="metros">Área aproximada (m²) *</label>
+              <input type="number" id="metros" placeholder="Ej. 50" min="1" oninput="calcularEstimacion()" />
+            </div>
+            <div class="form-group" id="grupo-pisos" style="display:none">
+              <label for="pisos">Número de pisos / niveles</label>
+              <input type="number" id="pisos" placeholder="Ej. 2" min="1" value="1" oninput="calcularEstimacion()" />
+            </div>
+
+            <div class="form-group full">
+              <label for="descripcion">Descripción adicional del trabajo</label>
+              <textarea id="descripcion" rows="4" placeholder="Describe cualquier detalle importante: tipo de superficie, condición actual, preferencias de color, acceso al área, etc."></textarea>
+            </div>
+
+            <!-- Estimación -->
+            <div class="form-group full" id="estimacion-box" style="display:none">
+              <div class="estimacion-card">
+                <h3>💰 Estimación Preliminar</h3>
+                <p class="estimacion-nota">Esta es una estimación orientativa. El precio final será confirmado por nuestro equipo.</p>
+                <div class="estimacion-rango">
+                  <span class="estimacion-label">Rango estimado:</span>
+                  <span class="estimacion-valor" id="estimacion-valor">RD$ —</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full center-btn">
+              <button class="btn-primary" onclick="enviarSolicitud()">Enviar solicitud</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Éxito -->
+        <div id="form-exito" style="display:none" class="exito-box">
+          <div class="exito-icon">✅</div>
+          <h2>¡Solicitud enviada!</h2>
+          <p>Gracias, <strong id="nombre-exito"></strong>. Hemos recibido tu solicitud de cotización.</p>
+          <p>Nuestro equipo revisará los detalles y te contactará al <strong id="tel-exito"></strong> a la brevedad.</p>
+          <button class="btn-secondary" onclick="reiniciarFormulario()">Enviar otra solicitud</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="container">
+      <h2 class="section-title light">Contáctanos directamente</h2>
+      <div class="contacto-grid">
+        <div class="contacto-item">
+          <span>📱</span>
+          <p>WhatsApp / Llamadas</p>
+          <a href="https://wa.me/18095550000" target="_blank">809-555-0000</a>
+        </div>
+        <div class="contacto-item">
+          <span>📸</span>
+          <p>Instagram</p>
+          <a href="https://instagram.com/tekcoatconstruct" target="_blank">@tekcoatconstruct</a>
+        </div>
+        <div class="contacto-item">
+          <span>📍</span>
+          <p>Ubicación</p>
+          <span>Santo Domingo, R.D.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 TekCoat Construct, S.R.L. — Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/precios.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

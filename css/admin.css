@@ -1,0 +1,97 @@
+/* ── Admin Body ──────────────────────────────────────────────────────────── */
+.admin-body { background: #F1F5F9; min-height: 100vh; }
+
+/* ── Login ───────────────────────────────────────────────────────────────── */
+.login-screen { display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; background: linear-gradient(135deg, var(--navy), #2a5080); }
+.login-box { background: var(--white); border-radius: 14px; padding: 48px 40px;
+  width: 100%; max-width: 380px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+.admin-logo { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+.login-box p { color: var(--gray); font-size: 0.9rem; margin-bottom: 28px; }
+.login-box .form-group { text-align: left; margin-bottom: 20px; }
+.login-box .btn-primary { width: 100%; }
+.login-error { color: #DC2626; font-size: 0.85rem; margin-top: 10px; }
+
+/* ── Admin Header ────────────────────────────────────────────────────────── */
+.admin-header { background: var(--navy); padding: 0; }
+.admin-nav { display: flex; align-items: center; gap: 16px; }
+.admin-nav span { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+.btn-secondary.small { padding: 6px 14px; font-size: 0.82rem;
+  border-color: rgba(255,255,255,0.4); color: var(--white); }
+.btn-secondary.small:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+
+/* ── Admin Main ──────────────────────────────────────────────────────────── */
+.admin-main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+/* ── Stats ───────────────────────────────────────────────────────────────── */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.stat-card { background: var(--white); border-radius: var(--radius); padding: 20px 24px;
+  box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; gap: 4px;
+  border-top: 4px solid var(--navy); }
+.stat-card.pendiente { border-top-color: #F59E0B; }
+.stat-card.atendida  { border-top-color: #10B981; }
+.stat-card.rechazada { border-top-color: #EF4444; }
+.stat-num { font-size: 2rem; font-weight: 800; color: var(--navy); }
+.stat-label { font-size: 0.82rem; color: var(--gray); text-align: center; }
+
+/* ── Filtros ─────────────────────────────────────────────────────────────── */
+.filtros-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+.filtros-bar input { flex: 1; min-width: 220px; }
+.filtros-bar select { min-width: 160px; }
+
+/* ── Tabla ───────────────────────────────────────────────────────────────── */
+.table-wrapper { background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow); overflow-x: auto; }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.admin-table thead { background: var(--navy); }
+.admin-table th { color: var(--white); font-weight: 600; padding: 13px 14px;
+  text-align: left; white-space: nowrap; }
+.admin-table td { padding: 12px 14px; border-bottom: 1px solid #F1F5F9;
+  vertical-align: middle; }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: #F8FAFC; }
+.admin-table small { color: var(--gray); font-size: 0.78rem; }
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 0.78rem;
+  font-weight: 600; text-transform: capitalize; }
+.badge-pendiente { background: #FEF3C7; color: #92400E; }
+.badge-atendida  { background: #D1FAE5; color: #065F46; }
+.badge-rechazada { background: #FEE2E2; color: #991B1B; }
+
+/* ── Botones tabla ───────────────────────────────────────────────────────── */
+.btn-sm { padding: 4px 10px; border-radius: 6px; border: 1.5px solid var(--border);
+  background: var(--white); cursor: pointer; font-size: 0.8rem; transition: background 0.15s; }
+.btn-sm:hover { background: var(--light); }
+.btn-sm-green { border-color: #10B981; color: #065F46; }
+.btn-sm-green:hover { background: #D1FAE5; }
+.btn-sm-red { border-color: #EF4444; color: #991B1B; }
+.btn-sm-red:hover { background: #FEE2E2; }
+
+/* ── Modal ───────────────────────────────────────────────────────────────── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+.modal-box { background: var(--white); border-radius: 14px; padding: 36px;
+  width: 100%; max-width: 560px; position: relative; max-height: 90vh; overflow-y: auto; }
+.modal-close { position: absolute; top: 14px; right: 16px; background: none;
+  border: none; font-size: 1.2rem; cursor: pointer; color: var(--gray); }
+.modal-box h2 { color: var(--navy); font-size: 1.3rem; margin-bottom: 20px; }
+.detalle-grid { display: flex; flex-direction: column; gap: 12px; }
+.detalle-row { display: flex; gap: 12px; align-items: flex-start; font-size: 0.9rem; }
+.detalle-row span:first-child { color: var(--gray); min-width: 90px; font-weight: 600; }
+.detalle-row.full { flex-direction: column; }
+.detalle-row p { color: #374151; line-height: 1.5; margin-top: 4px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.btn-atendida { background: #10B981; color: var(--white); border: none;
+  padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.btn-rechazada { background: #EF4444; color: var(--white); border: none;
+  padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .login-box { padding: 32px 24px; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}

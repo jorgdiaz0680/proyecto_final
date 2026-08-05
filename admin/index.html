@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TekCoat Admin — Panel de Cotizaciones</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/admin.css"/>
+</head>
+<body class="admin-body">
+
+  <!-- LOGIN -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-box">
+      <div class="logo-text admin-logo">TekCoat<span>Admin</span></div>
+      <p>Panel de gestión de cotizaciones</p>
+      <div class="form-group">
+        <label for="admin-pass">Contraseña</label>
+        <input type="password" id="admin-pass" placeholder="Ingresa la contraseña"
+               onkeydown="if(event.key==='Enter') verificarLogin()" />
+      </div>
+      <button class="btn-primary" onclick="verificarLogin()">Entrar</button>
+      <p id="login-error" class="login-error" style="display:none">Contraseña incorrecta.</p>
+    </div>
+  </div>
+
+  <!-- PANEL PRINCIPAL -->
+  <div id="admin-panel" style="display:none">
+
+    <header class="admin-header">
+      <div class="header-inner">
+        <span class="logo-text">TekCoat<span>Admin</span></span>
+        <div class="admin-nav">
+          <span id="admin-fecha"></span>
+          <button class="btn-secondary small" onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-num" id="stat-total">0</span>
+          <span class="stat-label">Total solicitudes</span>
+        </div>
+        <div class="stat-card pendiente">
+          <span class="stat-num" id="stat-pendiente">0</span>
+          <span class="stat-label">Pendientes</span>
+        </div>
+        <div class="stat-card atendida">
+          <span class="stat-num" id="stat-atendida">0</span>
+          <span class="stat-label">Atendidas</span>
+        </div>
+        <div class="stat-card rechazada">
+          <span class="stat-num" id="stat-rechazada">0</span>
+          <span class="stat-label">Rechazadas</span>
+        </div>
+      </div>
+
+      <!-- Filtros -->
+      <div class="filtros-bar">
+        <input type="text" id="buscar" placeholder="🔍 Buscar por nombre, teléfono o servicio..."
+               oninput="renderSolicitudes()" />
+        <select id="filtro-estado" onchange="renderSolicitudes()">
+          <option value="">Todos los estados</option>
+          <option value="pendiente">Pendientes</option>
+          <option value="atendida">Atendidas</option>
+          <option value="rechazada">Rechazadas</option>
+        </select>
+        <button class="btn-secondary small" onclick="exportarCSV()">⬇ Exportar CSV</button>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-wrapper">
+        <table class="admin-table" id="tabla-solicitudes">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Fecha</th>
+              <th>Cliente</th>
+              <th>Teléfono</th>
+              <th>Servicio</th>
+              <th>m²</th>
+              <th>Estimación</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-body">
+          </tbody>
+        </table>
+        <p id="sin-solicitudes" style="display:none; text-align:center; padding:40px; color:#888;">
+          No hay solicitudes aún.
+        </p>
+      </div>
+
+    </main>
+
+    <!-- MODAL DETALLE -->
+    <div id="modal-overlay" class="modal-overlay" style="display:none" onclick="cerrarModal(event)">
+      <div class="modal-box">
+        <button class="modal-close" onclick="cerrarModal()">✕</button>
+        <h2>Detalle de Solicitud</h2>
+        <div id="modal-content"></div>
+        <div class="modal-actions">
+          <button class="btn-atendida" onclick="cambiarEstado(window._modalId, 'atendida')">✔ Marcar atendida</button>
+          <button class="btn-rechazada" onclick="cambiarEstado(window._modalId, 'rechazada')">✗ Rechazar</button>
+          <button class="btn-secondary" onclick="cerrarModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../js/precios.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>
